@@ -1,0 +1,215 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Page</title>
+    <link rel="stylesheet" href="payment.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #e0f7fa;
+            margin: 0;
+            padding: 20px;
+        }
+
+        nav {
+            background-color: #00796b;
+            padding: 15px;
+            text-align: center;
+            color: white;
+            border-radius: 8px;
+        }
+
+        .payment-summary, .visit-details, .payment-options {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .payment-summary h3, .visit-details h3, .payment-options h3 {
+            color: #00796b;
+            margin-bottom: 10px;
+        }
+
+        input[type="text"], input[type="email"], input[type="date"], input[type="number"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .additional-guests {
+            margin-top: 20px;
+        }
+
+        .guest-input {
+            margin-bottom: 10px;
+        }
+
+        button {
+            background-color: #00796b;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #004d40;
+        }
+
+        .payment-methods {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        .method {
+            border: 1px solid #00796b;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            margin: 10px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .method:hover {
+            transform: scale(1.05);
+            border-color: #004d40;
+        }
+
+        .payment-icon {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .hidden {
+            display: none;
+        }
+        
+        .warning {
+            color: red;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body onload="initializePage()">
+    <nav>
+        <h1>Payment Page</h1>
+    </nav>
+
+    <section class="payment-summary">
+        <h3>Order Summary</h3>
+        <p id="hotel-name">Hotel: Not Selected</p>
+        <p id="hotel-price">Price: ₹ 0</p>
+        <p id="hotel-description"></p>
+        <p id="total-price"></p>
+    </section>
+
+    <section class="visit-details">
+        <h3>Visit Details</h3>
+        <input type="text" id="visitorName" placeholder="Your Name" required>
+        <input type="email" id="visitorEmail" placeholder="Your Email" required>
+        <label for="fromDate">From:</label>
+        <input type="date" id="fromDate" required>
+        <label for="toDate">To:</label>
+        <input type="date" id="toDate" required>
+
+        <input type="number" id="noOfAdults" placeholder="Number of Adults" required oninput="updateGuestInputs()">
+        <input type="number" id="noOfChildren" placeholder="Number of Children">
+        <input type="number" id="noOfRooms" placeholder="Total Number of Rooms" required>
+        <p id="calculatedDays"></p>
+
+        <div class="additional-guests" id="additionalGuestsContainer"></div>
+
+        <button onclick="submitVisitDetails()">Next</button>
+    </section>
+
+    <section class="payment-options hidden">
+        <h3>Select Payment Method</h3>
+        <div class="payment-methods">
+            <div class="method" onclick="selectPaymentMethod('credit-card')">
+                <h4>
+                    <i class="fas fa-credit-card payment-icon"></i>
+                    Credit/Debit Card
+                </h4>
+            </div>
+            <div class="method" onclick="selectPaymentMethod('upi')">
+                <h4>
+                    <i class="fas fa-mobile-alt payment-icon"></i>
+                    UPI
+                </h4>
+            </div>
+            <div class="method" onclick="selectPaymentMethod('paypal')">
+                <h4>
+                    <i class="fab fa-paypal payment-icon"></i>
+                    PayPal
+                </h4>
+            </div>
+        </div>
+        <div id="payment-box" class="hidden"></div>
+    </section>
+
+    <script src="payment.js"></script>
+    <script>
+        function initializePage() {
+            const hotelName = localStorage.getItem('hotelName') || 'Not Selected';
+            const hotelPrice = parseInt(localStorage.getItem('hotelPrice')) || 0;
+            const hotelDescription = localStorage.getItem('hotelDescription') || '';
+
+            document.getElementById('hotel-name').textContent = `Hotel: ${hotelName}`;
+            document.getElementById('hotel-price').textContent = `Price: ₹ ${hotelPrice}`;
+            document.getElementById('hotel-description').textContent = hotelDescription;
+
+            // Disable past dates for "From Date"
+            const fromDateInput = document.getElementById('fromDate');
+            const today = new Date().toISOString().split('T')[0];
+            fromDateInput.setAttribute('min', today);
+
+            // Set constraints on "To Date" when "From Date" changes
+            fromDateInput.addEventListener('change', function() {
+                const fromDateValue = this.value;
+                const toDateInput = document.getElementById('toDate');
+
+                // Set the minimum date for "To Date" based on "From Date"
+                toDateInput.setAttribute('min', fromDateValue);
+
+                // Clear "To Date" if it's earlier than the new "From Date"
+                if (toDateInput.value && toDateInput.value < fromDateValue) {
+                    toDateInput.value = '';
+                }
+            });
+        }
+
+        function updateGuestInputs() {
+            const noOfAdults = parseInt(document.getElementById('noOfAdults').value);
+            const additionalGuestsContainer = document.getElementById('additionalGuestsContainer');
+
+            // Clear existing guest inputs
+            additionalGuestsContainer.innerHTML = '';
+
+            // Create input fields for additional guests
+            for (let i = 1; i < noOfAdults; i++) {
+                const guestInput = document.createElement('input');
+                guestInput.type = 'text';
+                guestInput.placeholder = `Guest ${i + 1} Name`;
+                guestInput.classList.add('guest-input');
+                additionalGuestsContainer.appendChild(guestInput);
+            }
+        }
+    </script>
+</body>
+</html>

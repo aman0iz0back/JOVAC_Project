@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Platinum Hotels</title>
+    <link rel="stylesheet" type="text/css" href="../css/hotel-detail.css">
+    <style>
+        /* Basic styles for hotel images and button */
+        .hotel-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            margin-bottom: 10px;
+        }
+        
+        .book-now {
+            display: inline-block;
+            padding: 12px 24px;
+            background: linear-gradient(90deg, #007BFF, #0056b3);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 10px;
+            font-weight: bold;
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        .book-now:hover {
+            background: linear-gradient(90deg, #0056b3, #004080);
+            transform: translateY(-2px);
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            padding: 10px 0;
+            background-color: #f1f1f1;
+        }
+
+        .hotel-details {
+            margin-bottom: 20px;
+        }
+
+        .hotel-price {
+            font-size: 18px;
+            color: #333;
+            font-weight: bold;
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="../index.html">Home</a>
+    <a href="silver.html">Silver Hotels</a>
+    <a href="gold.html">Gold Hotels</a>
+    <a href="platinum.html">Platinum Hotels</a>
+</nav>
+
+<div class="hotel-details">
+    <h2>Platinum Hotels</h2>
+    <p>Welcome to our selection of Bronze Hotels, where comfort meets affordability. Our curated list features a variety of hotels that cater to all types of travelers. Whether you're on a business trip or a family vacation, you'll find the perfect place to relax and enjoy your stay.</p>
+    <ul id="hotel-list">
+        <li>
+            <img src="images/pl1.jpg" alt="Hotel A" class="hotel-image">
+            <h3>The Ritz-Carlton</h3>
+            <p><strong>Location:</strong> Downtown Area</p>
+            <p><strong>Amenities:</strong> Free Wi-Fi, Pool, Restaurant</p>
+            <p>Known for its timeless elegance, The Ritz-Carlton offers world-class luxury accommodations, impeccable service, and lavish experiences across its global locations.</p>
+            <p class="hotel-price">Price: ₹ 39,999</p>
+            <a href="#" class="book-now" onclick="selectHotel('Hotel A', 39999, 'A cozy stay in the heart of the city.'); return false;">Book Now</a>
+        </li>
+        <li>
+            <img src="images/pl2.jpg" alt="Hotel B" class="hotel-image">
+            <h3>Four Seasons Hotel</h3>
+            <p><strong>Location:</strong> Riverside</p>
+            <p><strong>Amenities:</strong> Spa, Gym, Room Service</p>
+            <p>Known for its timeless elegance, The Ritz-Carlton offers world-class luxury accommodations, impeccable service, and lavish experiences across its global locations.</p>
+            <p class="hotel-price">Price: ₹ 35,999</p>
+            <a href="#" class="book-now" onclick="selectHotel('Hotel B', 359999, 'Luxury meets comfort in a serene setting.'); return false;">Book Now</a>
+        </li>
+        <li>
+            <img src="images/pl3.jpg" alt="Hotel C" class="hotel-image">
+            <h3>Mandarin Oriental</h3>
+            <p><strong>Location:</strong> Heritage District</p>
+            <p><strong>Amenities:</strong> Free Breakfast, Parking, Wi-Fi</p>
+            <p>Blending Asian heritage with modern luxury, Mandarin Oriental hotels are celebrated for their opulent interiors, fine dining, and exceptional spa services.</p>
+            <p class="hotel-price">Price: ₹ 38,999</p>
+            <a href="#" class="book-now" onclick="selectHotel('Hotel C', 38999, 'Modern amenities with a touch of tradition.'); return false;">Book Now</a>
+        </li>
+        <li>
+            <img src="images/pl4.jpg" alt="Hotel D" class="hotel-image">
+            <h3>The Peninsula</h3>
+            <p><strong>Location:</strong> Suburban Area</p>
+            <p><strong>Amenities:</strong> Family Rooms, Pool, Playground</p>
+            <p>Combining classic grandeur with cutting-edge technology, The Peninsula Hotels deliver extraordinary service in prestigious settings, offering both modern luxury and cultural charm.</p>
+            <p class="hotel-price">Price: ₹ 37,999</p>
+            <a href="#" class="book-now" onclick="selectHotel('Hotel D', 37999, 'An excellent choice for families and groups.'); return false;">Book Now</a>
+        </li>
+        <li>
+            <img src="images/pl5.jpg" alt="Hotel E" class="hotel-image">
+            <h3>Waldorf Astoria</h3>
+            <p><strong>Location:</strong> Near Airport</p>
+            <p><strong>Amenities:</strong> Free Shuttle, Breakfast Included</p>
+            <p>As a symbol of luxury and refinement, Waldorf Astoria hotels offer lavish accommodations, gourmet dining, and a rich heritage of iconic hospitality.</p>
+            <p class="hotel-price">Price: ₹ 36,999</p>
+            <a href="#" class="book-now" onclick="selectHotel('Hotel E', 36999, 'A budget-friendly option with great service.'); return false;">Book Now</a>
+        </li>
+    </ul>
+</div>
+
+<footer>
+    <p>Copyright © 2024 Travel Planner | All Rights Reserved.</p>
+</footer>
+
+<script>
+    function selectHotel(name, price, description) {
+        // Remove "Rs." and "/-" from the price and convert to a number
+        const numericPrice = price;
+
+        // Debug: Log the hotel name and price
+        console.log('Selected Hotel:', name);
+        console.log('Price:', numericPrice);
+
+        localStorage.setItem('hotelName', name);
+        localStorage.setItem('hotelPrice', numericPrice);
+        localStorage.setItem('hotelDescription', description);
+        window.location.href = 'payment.html';
+    }
+</script>
+
+</body>
+</html>

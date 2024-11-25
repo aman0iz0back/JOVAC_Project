@@ -1,0 +1,379 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    text-decoration: none;
+    list-style: none;
+    scroll-behavior: smooth;
+}
+
+.location-body {
+    background-color: #191919;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+nav {
+    width: 100%;
+    position: fixed;
+    background-color: rgb(21, 74, 74);
+    box-shadow: 5px 5px 30px rgba(0, 0, 0, 15%);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+nav .logo {
+    width: 60px;
+    margin: 2vh;
+    margin-left: 8%;
+}
+
+nav ul li {
+    list-style: none;
+    display: inline-block;
+    margin-left: 40px;
+}
+
+.navbar {
+    display: flex;
+    margin-right: 4vh;
+}
+
+.navbar a {
+    color: white;
+    font-size: 18px;
+    padding: 10px 22px;
+    border-radius: 4px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: ease 0.40s;
+}
+
+.navbar a:hover,
+.navbar a.active {
+    background: white;
+    color: black;
+    box-shadow: 5px 10px 30px rgb(85 85 85 / 20%);
+    border-radius: 5px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    font-size: 17px;
+}
+
+.location-section {
+    padding: 80px 110px;
+}
+
+.location-heading h1 {
+    margin-top: 20px;
+    font-size: 60px;
+    margin-bottom: 20px;
+}
+
+.location-heading h1 span {
+    color: #fc0050;
+}
+
+.location-detail {
+    text-align: center;
+}
+
+.location-detail h1 {
+    padding-top: 40px;
+    color: #fc0050;
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+.location-detail p {
+    font-size: 20px;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+.stars i {
+    font-size: 20px;
+    color: rgb(197, 167, 44);
+}
+
+.location-gallery {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.main-image-container {
+    width: 60%;
+}
+
+.side-images-container {
+    width: 18%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.main-image {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.side-image {
+    width: 100%;
+    height: 48%;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    margin-bottom: 10px;
+}
+
+.description-box {
+    background-color: rgba(37, 37, 37, 0.8);
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.description-box p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #ffffff;
+}
+
+.package {
+    padding: 40px 110px;
+    color: white;
+}
+
+.package-title {
+    text-align: center;
+}
+
+.package-title h2 {
+    font-size: 40px;
+    font-weight: 650;
+    padding-top: 75px;
+    padding-bottom: 10px;
+    line-height: 2;
+}
+
+.package-content {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.box {
+    width: calc(50% - 20px);
+    margin-bottom: 20px;
+    background-color: #252525;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.box .image {
+    height: 250px;
+    overflow: hidden;
+    margin-bottom: 15px;
+}
+
+.box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.box h3 {
+    color: #fc0050;
+    margin-bottom: 10px;
+}
+
+.box h4 {
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+
+.pac-details {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+}
+
+.pac-details li {
+    font-size: 16px;
+    color: #ddd;
+    margin-bottom: 5px;
+}
+
+.footer {
+    margin-top: auto;
+    background-color: rgb(21, 74, 74);
+    padding-top: 40px;
+}
+
+.foot {
+    padding: 20px 0;
+}
+
+.footer-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.footlinks h4 {
+    margin-top: 30px;
+    font-size: 20px;
+    font-weight: 600;
+    color: white;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.footlinks h4::before {
+    content: "";
+    position: absolute;
+    height: 2px;
+    width: 70px;
+    left: 0;
+    bottom: -7px;
+    background: white;
+}
+
+.footlinks ul li {
+    margin-bottom: 15px;
+}
+
+.footlinks ul li a {
+    font-size: 17px;
+    color: #dddddd;
+    display: block;
+    transition: ease 0.30s;
+}
+
+.footlinks ul li a:hover {
+    transform: translate(6px);
+    color: white;
+}
+
+.social a {
+    font-size: 25px;
+    margin: 4px;
+    height: 40px;
+    width: 40px;
+    color: rgb(21, 74, 74);
+    background-color: white;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    transition: ease 0.30s;
+}
+
+.social a:hover {
+    transform: scale(1.2);
+}
+
+.end {
+    text-align: center;
+    padding-top: 60px;
+    padding-bottom: 12px;
+}
+
+.end p {
+    font-size: 15px;
+    color: white;
+    letter-spacing: 1px;
+    font-weight: 300;
+}
+
+.button {
+    display: inline-block;
+    margin-top: 5vh;
+    font-size: 25px;
+    padding: 10px 30px;
+    color: rgb(21, 74, 74);
+    background-color: white;
+    border-radius: 20px;   
+    text-decoration: none;
+    transition: ease 0.30s;
+}
+
+.button:hover {
+    transform: scale(1.1);
+    color: rgb(21, 74, 74);
+    background-color: white;
+    box-shadow: 5px 10px 30px rgba(0, 0, 0, 0.4);
+    padding: 10px 30px;
+}
+
+@media only screen and (max-width: 1200px) {
+    .location-section,
+    .package {
+        padding: 60px 80px;
+    }
+}
+
+@media only screen  and (max-width: 768px) {
+    nav {
+        flex-direction: column;
+    }
+
+    .navbar {
+        flex-direction: column;
+        margin-right: 0;
+    }
+
+    .location-section,
+    .package {
+        padding: 40px 20px;
+    }
+
+    .location-gallery {
+        flex-direction: column;
+    }
+
+    .main-image-container,
+    .side-images-container {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .side-images-container {
+        flex-direction: row;
+    }
+
+    .side-image {
+        width: 48%;
+        height: auto;
+    }
+
+    .box {
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .location-section,
+    .package {
+        padding: 30px 15px;
+    }
+
+    .box {
+        width: 100%;
+    }
+}

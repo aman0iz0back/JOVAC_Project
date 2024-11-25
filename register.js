@@ -1,36 +1,34 @@
+document.querySelector('.register-form form').addEventListener('submit', async (event) => {
+    event.preventDefault(); // Prevent the default form submission
 
-document.addEventListener('DOMContentLoaded', function () {
+    // Gather form data
+    const formData = {
+        name: document.getElementById('name').value,
+        email: document.querySelector('input[name="myemail"]').value,
+        phone: document.getElementById('phonenum').value,
+        age: document.querySelector('input[name="myage"]').value,
+        gender: document.querySelector('input[name="mygender"]:checked') ? 
+                document.querySelector('input[name="mygender"]:checked').nextSibling.textContent.trim() : '',
+    };
 
-    const form = document.querySelector('form');
+    // Send data to the server
+    try {
+        const response = await fetch('http://localhost:5000/register', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        });
 
-    form.addEventListener('submit', function (e) {
-        let isValid = true;
-
-        
-        const phoneInput = document.getElementById('phonenum');
-        const phoneNumber = phoneInput.value;
-        if (phoneNumber.length < 10 || isNaN(phoneNumber)) {
-            alert("Phone number must be at least 10 digits and should not include characters.");
-            isValid = false;
+        if (response.ok) {
+            alert('Registration successful!');
+            // Optionally, reset the form or redirect
+            document.querySelector('.register-form form').reset();
+        } else {
+            throw new Error('Registration failed');
         }
-
-    
-        const destinations = document.querySelectorAll('input[name="td"]:checked');
-        if (destinations.length === 0) {
-            alert("Please select at least one travel destination.");
-            isValid = false;
-        }
-
-        const packages = document.querySelectorAll('input[name="locations"]:checked');
-        if (packages.length === 0) {
-            alert("Please select a package.");
-            isValid = false;
-        }
-
-        
-        if (!isValid) {
-            e.preventDefault();
-        }
-    });
-
+    } catch (error) {
+        alert(error.message);
+    }
 });

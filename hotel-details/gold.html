@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gold Hotels</title>
+    <link rel="stylesheet" type="text/css" href="../css/hotel-detail.css">
+    <style>
+        /* Basic styles for hotel images and button */
+        .hotel-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            margin-bottom: 10px;
+        }
+        
+        .book-now {
+            display: inline-block;
+            padding: 12px 24px;
+            background: linear-gradient(90deg, #007BFF, #0056b3);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 10px;
+            font-weight: bold;
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        .book-now:hover {
+            background: linear-gradient(90deg, #0056b3, #004080);
+            transform: translateY(-2px);
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            padding: 10px 0;
+            background-color: #f1f1f1;
+        }
+
+        .hotel-details {
+            margin-bottom: 20px;
+        }
+
+        .hotel-price {
+            font-size: 18px;
+            color: #333;
+            font-weight: bold;
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="../index.html">Home</a>
+    <a href="silver.html">Silver Hotels</a>
+    <a href="gold.html">Gold Hotels</a>
+    <a href="platinum.html">Platinum Hotels</a>
+</nav>
+
+<div class="hotel-details">
+    <h2>Gold Hotels</h2>
+    <p>Gold Hotels offers a luxurious escape with world-class amenities and exceptional service. Nestled in prime locations, each hotel combines elegant design with modern comfort. Guests can enjoy exquisite dining, relaxing spas, and stunning views. Whether for business or leisure, Gold Hotels ensures a memorable stay tailored to your every need. Experience the perfect blend of sophistication and hospitality at Gold Hotels.</p>
+        <li>
+            <img src="images/gold1.jpg" alt="Holiday Inn Express " class="hotel-image">
+            <h3>Holiday Inn Express </h3>
+            <p><strong>Location:</strong> Downtown Area</p>
+            <p><strong>Amenities:</strong> Free Wi-Fi, Pool, Restaurant</p>
+            <p>This chain is popular for its modern amenities, comfortable rooms, and complimentary breakfast. It's often located near business districts and attractions, making it a convenient choice for travelers.</p>
+            <p class="hotel-price">Price: ₹ 29,999</p>
+            <a href="#" class="book-now" onclick="selectHotel('Holiday Inn Express', 29999, 'A cozy stay in the heart of the city.'); return false;">Book Now</a>
+        </li>
+        <li>
+            <img src="images/gold2.jpg" alt="Best Western" class="hotel-image">
+            <h3>Best Western</h3>
+            <p><strong>Location:</strong> Riverside</p>
+            <p><strong>Amenities:</strong> Spa, Gym, Room Service</p>
+            <p> Known for its consistency across locations, Best Western offers a variety of accommodations tailored to business and leisure travelers. Many locations feature free Wi-Fi and breakfast, along with friendly service..</p>
+            <p class="hotel-price">Price: ₹ 19,999</p>
+            <a href="#" class="book-now" onclick="selectHotel('Hotel B', 19999, 'Luxury meets comfort in a serene setting.'); return false;">Book Now</a>
+        </li>
+        <li>
+            <img src="images/gold3.jpg" alt="Hampton Inn" class="hotel-image">
+            <h3>Hampton Inn</h3>
+            <p><strong>Location:</strong> Heritage District</p>
+            <p><strong>Amenities:</strong> Free Breakfast, Parking, Wi-Fi</p>
+            <p>his hotel chain prides itself on providing a warm atmosphere, with clean, comfortable rooms and free hot breakfast. It's also known for its friendly staff and convenient access to local attractions.
+
+                .</p>
+            <p class="hotel-price">Price: ₹ 18,999</p>
+            <a href="#" class="book-now" onclick="selectHotel('Hotel C', 18999, 'Modern amenities with a touch of tradition.'); return false;">Book Now</a>
+        </li>
+        <li>
+            <img src="images/gold4.jpg" alt="Comfort Inn" class="hotel-image">
+            <h3>Comfort Inn</h3>
+            <p><strong>Location:</strong> Suburban Area</p>
+            <p><strong>Amenities:</strong> Family Rooms, Pool, Playground</p>
+            <p>Offering a balance of affordability and comfort, Comfort Inn hotels typically feature spacious rooms and essential amenities like free breakfast and Wi-Fi. They are often situated near key attractions for easy access..</p>
+            <p class="hotel-price">Price: ₹ 17,999</p>
+            <a href="#" class="book-now" onclick="selectHotel('Hotel D', 17999, 'An excellent choice for families and groups.'); return false;">Book Now</a>
+        </li>
+        <li>
+            <img src="images/gold5.jpg" alt="Quality Inn" class="hotel-image">
+            <h3>Quality Inn </h3>
+            <p><strong>Location:</strong> Near Airport</p>
+            <p><strong>Amenities:</strong> Free Shuttle, Breakfast Included</p>
+            <p>This brand is recognized for its budget-friendly options while still offering essential amenities like complimentary breakfast and free Wi-Fi. Quality Inn hotels are often located near highways and local attractions, making them ideal for travelers on the go.</p>
+            <p class="hotel-price">Price: ₹ 26,999</p>
+            <a href="#" class="book-now" onclick="selectHotel('Hotel E', 26999, 'A budget-friendly option with great service.'); return false;">Book Now</a>
+        </li>
+    </ul>
+</div>
+
+<footer>
+    <p>Copyright © 2024 Travel Planner | All Rights Reserved.</p>
+</footer>
+
+<script>
+    function selectHotel(name, price, description) {
+        // Remove "Rs." and "/-" from the price and convert to a number
+        const numericPrice = price;
+        console.log('Selected Hotel:', name);
+        console.log('Price:', numericPrice);
+        localStorage.setItem('hotelName', name);
+        localStorage.setItem('hotelPrice', numericPrice);
+        localStorage.setItem('hotelDescription', description);
+        window.location.href = 'payment.html';
+    }
+</script>
+
+</body>
+</html>
